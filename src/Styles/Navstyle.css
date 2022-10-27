@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    
+    margin :0;
+}
+
+.nav{
+    height: 70px;
+    background-color: #d24515;
+    box-shadow: 2px 5px 10px rgb(170, 170, 170);;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+.navContainer{
+    margin: auto;
+    color :white;
+
+}

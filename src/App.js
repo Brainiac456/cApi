@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import './Styles/MainPage.css'
 import './App.css';
+import Tabs from './components/Tabs';
+import Navbar from './components/Navbar';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+ <>
+<Navbar />
+<div >
+    <div className="row">
+      
+
+    <div class="column">
+        <h1>Cat WebSite : Because why not?</h1>
+        <p>cats are strange , Lion is also a cat</p>
+
+      </div>
+
+      <div class="column">
+        <div>
+          <Tabs />
+        </div>
+      </div>
+
     </div>
+    </div>
+    </>
   );
 }
 

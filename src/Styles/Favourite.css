@@ -1,0 +1,77 @@
+.Fav{
+    justify-content: space-between;
+    display: flex;
+}
+.para{
+    margin-left: 10px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.Page-button{
+    
+   margin-left: 100px;
+
+}
+.more{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 90px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.imageList {
+    margin: 10px 70px;
+    overflow:auto; 
+    height:400px;
+   
+
+}
+
+.imgContainer {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+
+}
+
+.imageStyle{
+    
+    padding :10px 10px ;
+    transition: 0.5s;
+    
+}
+.imageStyle:hover{
+    opacity: 0.8;
+}
+
+.imgContainer .btn {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    opacity: 0;
+    color: black;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.5s;
+  }
+  
+  .imgContainer .btn:hover {
+    background-color: red;
+    opacity: 0.5;
+  }
+
