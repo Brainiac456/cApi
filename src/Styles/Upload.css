@@ -2,30 +2,71 @@
     position: relative;
     overflow: hidden;
     display: inline-block;
-    margin: 200px 150px;
+    margin: 60px 150px;
   }
   
   .btn {
     border: 2px solid gray;
     color: gray;
-    background-color: white;
-    padding: 100px 100px;
+    margin: auto;
+    width: 350px ;
+    height: 350px;
+ 
+    top: 350px;
     border-radius: 8px;
     font-size: 20px;
     border: dotted;
     font-weight: bold;
   }
+
   
   .upload-btn-wrapper input[type=file] {
     font-size: 100px;
-    position: absolute;
+    position: flex;
+    margin-left: 42px;
     left: 0;
     top: 0;
     opacity: 0;
   }
 
-  .upload-para{
+  .upload-btn{
 
+
+    width: 100px;
+    height: 50px;
     text-align: center;
+    margin: -10px 270px;
+    
+    background-color: #4CAF50; /* Green */
+   
+  
 
+  }
+  .Msg-Panel {
+
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(117, 207, 117);
+    padding-top: 0.5px;
+    
+
+  }
+  .Error-Msg-Panel {
+
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    background-color: rgb(218, 81, 81);
+    padding-top: 10px;
+    
+
+  }
+  .image-container{
+
+    display:flex;
+    width: 50px;
+    height: 50px;
+    float: left; 
+    margin: 10px 60px
   }

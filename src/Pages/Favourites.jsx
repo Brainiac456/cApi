@@ -2,17 +2,14 @@ import React,{useState, useEffect} from 'react'
 import "../Styles/Favourite.css";
 import axios from 'axios';
 
-const im = [
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-]
+
 
 export default function Favourites() {
 
   const [order , setOrder] = useState('ASC')
   const [page , setPage] = useState('9')
   const[images, setImages] = useState(null)
+ 
  
   const Geturl = 'https://api.thecatapi.com/v1/favourites';
   
@@ -35,7 +32,8 @@ export default function Favourites() {
   useEffect(() => {
  
    fetchData();
-}, [order,page,images]);
+    
+}, [order,page]);
 
 
 
@@ -58,6 +56,12 @@ const handlePage = (event) =>{
 const handleUnfav = (event,favouriteId)=>{
   
     event.preventDefault()
+
+   let myArray = images.filter(function( obj ) {
+      return obj.id !== favouriteId;
+    });
+    setImages(myArray)
+
     axios({
       method: "DELETE",
       url: (`https://api.thecatapi.com/v1/favourites/${favouriteId}`),
@@ -68,7 +72,7 @@ const handleUnfav = (event,favouriteId)=>{
     .catch(function (error) {
       console.log(error);
     });
-  
+    
   }
   
 

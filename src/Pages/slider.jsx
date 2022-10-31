@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-
-
+import "../Styles/slider.css"
+import "../Styles/breed.css"
 
 
 const rightArrowStyles = {
+  
   position: "absolute",
-  top: "25%",
+  top: "50%",
   transform: "translate(0, -50%)",
   right: "32px",
   fontSize: "45px",
@@ -16,8 +17,9 @@ const rightArrowStyles = {
 };
 
 const leftArrowStyles = {
+
   position: "absolute",
-  top: "25%",
+  top: "50%",
   transform: "translate(0, -50%)",
   left: "32px",
   fontSize: "45px",
@@ -32,17 +34,16 @@ const sliderStyles = {
 };
 
 const dotsContainerStyles = {
+  backgroundColor: 'black',
+  color : '"#000000',
   display: "flex",
   justifyContent: "center",
+  height:'45px',
+  opacity:'0.6',
+  paddingTop:'12px'
 };
 
-const dotStyle = {
-  margin: "0 3px",
-  cursor: "pointer",
-  fontSize: "20px",
-  color:"grey",
-  opacity: "50%"
-};
+
 
 const ImageSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,6 +65,7 @@ const ImageSlider = ({ slides }) => {
   };
 
   return (
+    
     <div style={sliderStyles}>
       <div>
         <div onClick={goToPrevious} style={leftArrowStyles}>
@@ -73,30 +75,32 @@ const ImageSlider = ({ slides }) => {
           ❱
         </div>
       </div>
-  <div className="card-body mt-2">
-     <img src= {slides[currentIndex].url} className="card-img-top" alt="..." height="350"/>
+  <div className="slideshow-container">
+     <img src= {slides[currentIndex].url} className="image" alt="..." width="500" height="350"/>
       <div style={dotsContainerStyles}>
         {slides.map((slide, slideIndex) => (
-          <div
-            style={dotStyle}
+        
+          <div className="dot"
+            
             key={slideIndex}
             onClick={() => goToSlide(slideIndex)}
           >
-            ●
+            
           </div>
+         
         ))}
         </div>
 
-  <div className="card-body mt-2">
-    <h5 className="card-title">{slides[currentIndex].breeds[0].name}</h5>
-    <h6> id: {slides[currentIndex].breeds[0].id}</h6>
+  <div className="Slider-Content">
+    <h5 style={{fontSize:'20px'}}>{slides[currentIndex].breeds[0].name}</h5>
+    <h6 style={{fontSize:'15px'}}> id: {slides[currentIndex].breeds[0].id}</h6>
     <p className="card-text">{slides[currentIndex].breeds[0].description}</p>
     <p style={{fontStyle:"italic"}}className="card-text">{slides[currentIndex].breeds[0].temperament}</p>
     <p className="card-text">{slides[currentIndex].breeds[0].origin}</p>
     <p className="card-text">{slides[currentIndex].breeds[0].weight.metric} kgs</p>
     <p className="card-text">{slides[currentIndex].breeds[0].life_span} years average life span</p>
   </div>
-      <a style={{textDecoration:"none", color:"rgb(255, 182, 36)"}} href={slides[currentIndex].breeds[0].wikipedia_url} target="_blank">Wikipedia</a> 
+      <a style={{textDecoration:"none", color:"rgb(255, 182, 36)" , marginLeft:'290px'}} href={slides[currentIndex].breeds[0].wikipedia_url} target="_blank">Wikipedia</a> 
 
       </div>
     </div>

@@ -16,8 +16,8 @@ p{
  
   
   width: 650px;
- 
-  height: 800px;
+  min-height: 1000px;
+  height: auto;
   box-shadow: 2px 1px 10px #000000;;
   padding-bottom: 80px;
 }
@@ -46,6 +46,12 @@ p{
   background-color: rgba(255, 255, 255, 0.15);
 }
 .tabs button:disabled {
-  background: linear-gradient(245.39deg, #FC65ED -35.14%, #0500FF 143.06%);
-  color: white;
+  content: '';
+  width: 90%;
+  height: 3.8rem;
+  background-color: white;
+  left: 0;
+  bottom: 0;
+  background: black;
+
 }

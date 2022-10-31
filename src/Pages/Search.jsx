@@ -5,15 +5,8 @@ import '../Styles/Search.css'
 
 
 
-const im = [
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-  'https://picsum.photos/200',
-]
 export default function Search() {
-  const [order, setOrder] = useState("asc");
+  const [order, setOrder] = useState();
   const [isHovered, setHover] = useState(false);
   const [type, setType] = useState();
   const [Category, setCategory] = useState();
@@ -44,16 +37,21 @@ export default function Search() {
   }
 
   const handleFavorite =() => {
-    console.log("sds")
+    
   }
   const fetchData = async () => {
-    axios.get(Geturl + page, {
+    console.log(page)
+    axios.get(Geturl + page, {headers: {'x-api-key':'live_2om4LCa9Cj0PuUxGU1Ylr3tvEUFtP56pqOxC1j8BA4qiCefv6iq8IsAIUlhPTJgr'},
       params: {
+       
           'breeds_ids': breeds,
           'category': Category,
           'order': order,
+          'mime_types':type
+
       }
-    },{headers: {'x-api-key':'live_2om4LCa9Cj0PuUxGU1Ylr3tvEUFtP56pqOxC1j8BA4qiCefv6iq8IsAIUlhPTJgr'}})
+    })
+
   .then((response) => {
     console.log(response.data);
     setFinalData(response.data);
@@ -61,14 +59,33 @@ export default function Search() {
   .catch((error) => {
     console.log(error);
   });
-  //   axios.get((` https://api.thecatapi.com/v1/images/search?limit=${page}&order=${order}`) , { 'headers': { 'x-api-key': 'live_2om4LCa9Cj0PuUxGU1Ylr3tvEUFtP56pqOxC1j8BA4qiCefv6iq8IsAIUlhPTJgr' } })
-  // .then((response) => {
-  //   console.log(response.data);
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
+
   };
+
+  const newFavourite =async(imgId)=> 
+
+  {
+  
+    let body = {
+      'image_id':imgId,
+  
+  }
+    axios({
+      method: "post",
+      url: 'https://api.thecatapi.com/v1/favourites',
+      data: body,
+      headers: {  'x-api-key': 'live_2om4LCa9Cj0PuUxGU1Ylr3tvEUFtP56pqOxC1j8BA4qiCefv6iq8IsAIUlhPTJgr'},
+    }) .then(function (response) {
+    
+      console.log(response);
+    
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  
+    }
+    
 
 
 
@@ -114,11 +131,15 @@ useEffect(()=>{
           <option value="DESC">DESC</option>
           <option value="ASC">ASC</option>
         </select>
+       
+       
         <label className="lable">Type</label>
         <select className="dropdown-content"  onChange={handleType}>
-          <option value="Static">Static</option>
-          <option value="Animated">Animated</option>
+          <option value="png">Static</option>
+          <option value="gif">Animated</option>
         </select>
+       
+       
         <label className="lable">Category</label>
         <select className="dropdown-content" onChange={handleCategory}>
           {CategoryData?.map(Category=>{
@@ -140,35 +161,27 @@ useEffect(()=>{
    <div className='imageList'>
 
  <div
-          
-          onMouseOver={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+
         >
           <div >
             {finalData && (
               <div>
                 {finalData.map((image, index) => {
                   return (
-                    <div key={index}>
-                      <img src={image.url} className="m-2" alt="" width="150" height="100" />
-                      {isHovered && (
-                        <button
-                          onClick={(event) => handleFavorite(image, event)}
-                          className="btn btn-light m-2"
-                          style={{
-                            position: "relative",
-                            top: "25px",
-                            right: "140px",
-                            opacity: "70%",
-                            width: "100px",
-                            height: "5%",
-                            color: "black",
-                          }}
-                          variant="contained"
-                        >
-                          <FaHeart style={{ color: "red" }} />
-                        </button>
-                      )}
+                    <div className="Search-image" key={index}>
+                      <div className="image_with_btn" onMouseOver={() => setHover(index)}
+                           onMouseLeave={() => setHover(null)}>
+
+                      <img src={image.url} className="m-2 cta_img" alt="" width="150" height="100" />
+                      
+                      {isHovered===index && (
+                      <div className="image_hover_cta">
+                      <button onClick={()=>{newFavourite(image.id)}} ><FaHeart style={{ color: 'red' , width:'100px' ,height:'20px'}} /></button>
+                      </div>
+                      )
+                
+                       }
+                        </div>
                     </div>)
                 }
                 )}
